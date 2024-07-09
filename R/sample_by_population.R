@@ -24,21 +24,22 @@ sample_by_population <- function(N, df){
   #   - N (number): number of subcounties we want to sample
   #   - df (data.frame): dataframe of the population (pop) and shape (geometry) files
 
-  samp_vec <- sample(df$pop, N, replace = T, prob =  df$pop/sum(df$pop)) # sample N tracts
+  samp_vec <- sample(1:nrow(df), N, replace = T, prob = df$pop/sum(df$pop)) %>%
+    table() %>%
+    data.frame() # sample N tracts
 
   points <- data.frame()
 
   for(i in 1:nrow(samp_vec)){ # for each tract
-    if(samp_vec[i,1] > 0){    # if it has at least one sample
-      N_tract <- samp_vec[i,1]
-      tract_shape <- df[i, 'geometry']
-      sampled_points <- sf::st_sample(tract_shape, size = N_tract, type = "random")
-      point_df <- unlist(sampled_points) %>% matrix(nrow = N_tract, ncol = 2, byrow = T)
-      points <- rbind(points, point_df)
-    }
+
+    index <- samp_vec[i,1]
+    N_tract <- samp_vec[i,2]
+
+    tract_shape <- df[index, 'geometry']
+    sampled_points <- sf::st_sample(tract_shape, size = N_tract, type = "random")
+    point_df <- unlist(sampled_points) %>% matrix(nrow = N_tract, ncol = 2, byrow = T)
+    points <- rbind(points, point_df)
   }
-
-
 
   colnames(points) <- c('x', 'y')
 

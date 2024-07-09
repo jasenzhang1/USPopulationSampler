@@ -14,6 +14,7 @@ BugReports: https://github.com/jasenzhang1/USPopulationSampler/issues
 Imports: 
     dplyr,
     ggplot2,
+    magrittr,
     sf
 Suggests: 
     testthat (>= 3.0.0)

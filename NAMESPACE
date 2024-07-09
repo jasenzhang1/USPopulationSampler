@@ -2,3 +2,4 @@
 
 export(jasenfirst)
 export(sample_by_population)
+importFrom(magrittr,"%>%")
