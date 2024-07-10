@@ -13,7 +13,7 @@ contiguous <- function(df){
   contiguous_state_fp <- c(contiguous_state_fp,
                            as.character(c(10:13, 16:42, 44:51, 53:56)))
 
-  df2 <- df %>% dplyr::filter(STATEFP %in% contiguous_state_fp)
+  df2 <- df[df$STATEFP %in% contiguous_state_fp,]
 
   return(df2)
 }
