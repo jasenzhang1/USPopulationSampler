@@ -26,13 +26,14 @@ sample_by_population <- function(N, df){
 
   samp_vec <- sample(1:nrow(df), N, replace = T, prob = df$pop/sum(df$pop)) %>%
     table() %>%
-    data.frame() # sample N tracts
+    as.data.frame() # sample N tracts
 
   points <- data.frame()
 
   for(i in 1:nrow(samp_vec)){ # for each tract
 
-    index <- samp_vec[i,1]
+    index <- as.numeric(as.character(samp_vec[i,1]))
+
     N_tract <- samp_vec[i,2]
 
     tract_shape <- df[index, 'geometry']
