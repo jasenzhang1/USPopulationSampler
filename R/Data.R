@@ -165,3 +165,15 @@
 #' }
 #' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
 "bg_pop"
+
+
+# df_state <- NULL
+# df_county <- NULL
+# df_tract <- NULL
+# df_bg <- NULL
+#
+# state_convert <- NULL
+#
+# STATE_NAME <- NULL
+# STATEFP <- NULL
+# FIPS <- NULL

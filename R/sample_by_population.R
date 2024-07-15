@@ -34,11 +34,11 @@ sample_by_population <- function(N, df){
 
     index <- as.numeric(as.character(samp_vec[i,1]))
 
-    N_tract <- samp_vec[i,2]
+    N_i <- samp_vec[i,2]
 
-    tract_shape <- df[index, 'geometry']
-    sampled_points <- sf::st_sample(tract_shape, size = N_tract, type = "random")
-    point_df <- unlist(sampled_points) %>% matrix(nrow = N_tract, ncol = 2, byrow = T)
+    shape_i <- df[index, 'geometry']
+    sampled_points <- sf::st_sample(shape_i, size = N_i, type = "random")
+    point_df <- unlist(sampled_points) %>% matrix(nrow = N_i, ncol = 2, byrow = T)
     points <- rbind(points, point_df)
   }
 
