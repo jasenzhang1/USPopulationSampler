@@ -31,25 +31,53 @@ devtools::install_github("jasenzhang1/USPopulationSampler")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
+```{r}
 library(USPopulationSampler)
-## basic example code
+library(devtools)
+load_all()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+### If we are unsure of the names of the states, we first obtain a list of them
 
-```{r cars}
-summary(cars)
+```{r}
+get_state_names()
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+### We're interested in all the counties of Tennessee, so we get their county FIPS
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+tennessee_fips <- get_county_fips('Tennessee')
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+### Now we sample at the block-group level for the entire state of Tennessee
+
+```{r}
+pts <- US_pop_sampler(N = 1000, tennessee_fips, level = 4)
+```
+
+### We prepare shape files of Tennessee as a state and its county borders
+
+```{r}
+shape_state <- sampled_region_outline(tennessee_fips, 1)
+shape_county <- sampled_region_outline(tennessee_fips, 2)
+```
+
+### And we plot our sampled points
+
+```{r}
+ps <- 16
+cs <- 0.3
+alp <- 0.5
+
+par(mfrow = c(1,2))
+
+# plot 1: state border reference
+plot(shape_state)
+plot(pts, add = T, pch = ps, cex = cs,
+       col = rgb(0, 0, 1, alpha = alp))
+
+# plot 2: county border references
+plot(shape_county)
+plot(pts, add = T, pch = ps, cex = cs,
+       col = rgb(0, 0, 1, alpha = alp))
+```

@@ -37,7 +37,7 @@ US_pop_sampler <- function(N, area_fips, level){
     county_fips <- c()
 
     for(i in 1:length(area_fips)){
-      if(length(area_fips[i]) == 5){ # length of 5 means its a county
+      if(nchar(area_fips[i]) == 5){ # length of 5 means its a county
 
         county_fips <- c(county_fips, area_fips[i])
 

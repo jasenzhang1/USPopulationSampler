@@ -20,33 +20,75 @@ devtools::install_github("jasenzhang1/USPopulationSampler")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(USPopulationSampler)
-## basic example code
+library(devtools)
+#> Loading required package: usethis
+load_all()
+#> ℹ Loading USPopulationSampler
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+### If we are unsure of the names of the states, we first obtain a list of them
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+get_state_names()
+#>  [1] "Alabama"              "Alaska"               "Arizona"             
+#>  [4] "Arkansas"             "California"           "Colorado"            
+#>  [7] "Connecticut"          "Delaware"             "District of Columbia"
+#> [10] "Florida"              "Georgia"              "Hawaii"              
+#> [13] "Idaho"                "Illinois"             "Indiana"             
+#> [16] "Iowa"                 "Kansas"               "Kentucky"            
+#> [19] "Louisiana"            "Maine"                "Maryland"            
+#> [22] "Massachusetts"        "Michigan"             "Minnesota"           
+#> [25] "Mississippi"          "Missouri"             "Montana"             
+#> [28] "Nebraska"             "Nevada"               "New Hampshire"       
+#> [31] "New Jersey"           "New Mexico"           "New York"            
+#> [34] "North Carolina"       "North Dakota"         "Ohio"                
+#> [37] "Oklahoma"             "Oregon"               "Pennsylvania"        
+#> [40] "Rhode Island"         "South Carolina"       "South Dakota"        
+#> [43] "Tennessee"            "Texas"                "Utah"                
+#> [46] "Vermont"              "Virginia"             "Washington"          
+#> [49] "West Virginia"        "Wisconsin"            "Wyoming"             
+#> [52] "Puerto Rico"
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+### We’re interested in all the counties of Tennessee, so we get their county FIPS
 
-You can also embed plots, for example:
+``` r
+tennessee_fips <- get_county_fips('Tennessee')
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+### Now we sample at the block-group level for the entire state of Tennessee
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+``` r
+pts <- US_pop_sampler(N = 1000, tennessee_fips, level = 4)
+```
+
+### We prepare shape files of Tennessee as a state and its county borders
+
+``` r
+shape_state <- sampled_region_outline(tennessee_fips, 1)
+shape_county <- sampled_region_outline(tennessee_fips, 2)
+```
+
+### And we plot our sampled points
+
+``` r
+ps <- 16
+cs <- 0.3
+alp <- 0.5
+
+par(mfrow = c(1,2))
+
+# plot 1: state border reference
+plot(shape_state)
+plot(pts, add = T, pch = ps, cex = cs,
+       col = rgb(0, 0, 1, alpha = alp))
+
+# plot 2: county border references
+plot(shape_county)
+plot(pts, add = T, pch = ps, cex = cs,
+       col = rgb(0, 0, 1, alpha = alp))
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
