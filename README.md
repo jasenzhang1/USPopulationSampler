@@ -6,7 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of USPopulationSampler is to …
+The goal of USPopulationSampler is to sample the locations of people in
+the United States according to 2020 Census data. Users can sample at a
+state, county, tract, and block-group level.
 
 ## Installation
 
