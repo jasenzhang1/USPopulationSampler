@@ -166,6 +166,33 @@
 #' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
 "bg_pop"
 
+#' population for each block group
+#'
+#'
+#' @format ## `covid`
+#' A data frame with 56 rows and 10 columns:
+#' \describe{
+#'   \item{country}{Country name}
+#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
+#'   \item{year}{Year}
+#'   ...
+#' }
+#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
+"covid"
+
+#' population for each block group
+#'
+#'
+#' @format ## `countyfp`
+#' A data frame with 56 rows and 10 columns:
+#' \describe{
+#'   \item{country}{Country name}
+#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
+#'   \item{year}{Year}
+#'   ...
+#' }
+#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
+"countyfp"
 
 # df_state <- NULL
 # df_county <- NULL

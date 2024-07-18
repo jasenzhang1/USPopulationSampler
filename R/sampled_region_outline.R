@@ -9,6 +9,7 @@
 #' @examples
 #' sampled_region_outline(c('06', '14'))
 sampled_region_outline <- function(area_fips, level){
+
   state_fips <- c()
   county_fips <- c()
 
@@ -23,6 +24,7 @@ sampled_region_outline <- function(area_fips, level){
 
     }
   }
+
   if(level == 3){
     df_sample <- df_tract %>%
       dplyr::filter(FIPS %in% county_fips | STATEFP %in% state_fips)
