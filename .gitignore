@@ -4,3 +4,11 @@
 .httr-oauth
 .DS_Store
 .quarto
+test.Rmd
+profile.html
+test2.Rmd
+test3.Rmd
+getdata.Rmd
+covid_test.R
+test_covid.Rmd
+Figures/
