@@ -1,14 +1,16 @@
 #' Title
 #'
-#' @param vec dataframe with STATEFP as a column
+#' @param vec vector of STATEFP values
 #'
-#' @return a dataframe with just information from the contiguous US
+#' @return return a vector of boolean values that describes if each entry supplied in `vec` is a contiguous state.
 #' @export
 #'
 #' @examples
-#' df_contiguous <- contiguous(df)
+#' df_contiguous <- contiguous_v2(c('01', '02', '03', '04', '05'))
 #'
 contiguous_v2 <- function(vec){
+
+  # required datasets; statefp (loaded already)
 
   contiguous_state_fp <- c('01', '04', '05', '06', '08', '09')
   contiguous_state_fp <- c(contiguous_state_fp,

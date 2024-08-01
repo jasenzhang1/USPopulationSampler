@@ -1,12 +1,17 @@
 #' Title
 #'
-#' @param states string of states
+#' @param states a vector containing state names, presumably poorly formatted in the following ways:
+#'               - their two letter abbreviation
+#'               - poor capitalization of the state names
 #'
-#' @return a string of properly formatted states
+#' @return a string of states formatted by their full names with proper capitalization
 #' @export
 #'
 #' @examples convert_state_names(c('nj', 'pa', 'NY'))
 convert_state_names <- function(states){
+
+  # required datasets: state_convert
+
   new_states <- states
 
 

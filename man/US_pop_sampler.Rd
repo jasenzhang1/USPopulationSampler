@@ -2,7 +2,7 @@
 % Please edit documentation in R/US_pop_sampler.R
 \name{US_pop_sampler}
 \alias{US_pop_sampler}
-\title{Title}
+\title{Sampling in the United States by 2020 Census data}
 \usage{
 US_pop_sampler(N, area_fips, level)
 }
@@ -17,7 +17,7 @@ US_pop_sampler(N, area_fips, level)
 sampled points
 }
 \description{
-Title
+Sampling in the United States by 2020 Census data
 }
 \examples{
 US_pop_sampler(50, '06', 2)

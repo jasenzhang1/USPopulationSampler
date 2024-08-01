@@ -1,17 +1,23 @@
 #' Title
 #'
 #' @param area_fips vector of fips
-#' @param level the level of granularity
+#' @param level the level of granularity depicted in the plot (1 = state, 2 = county)
 #'
 #' @return shape
 #' @export
 #'
 #' @examples
-#' sampled_region_outline(c('06', '14'))
+#' sampled_region_outline(c('06', '32'), 2)
+#'
 sampled_region_outline <- function(area_fips, level){
+
+  # required datasets: df_state, df_county, df_tracts, df_bg
 
   state_fips <- c()
   county_fips <- c()
+
+
+  # 1) sort county by states
 
   for(i in 1:length(area_fips)){
     if(nchar(area_fips[i]) == 5){ # length of 5 means its a county
@@ -25,17 +31,15 @@ sampled_region_outline <- function(area_fips, level){
     }
   }
 
-  if(level == 3){
-    df_sample <- df_tract %>%
-      dplyr::filter(FIPS %in% county_fips | STATEFP %in% state_fips)
-  }  else{
-    df_sample <- df_county %>%
-      dplyr::filter(FIPS %in% county_fips | STATEFP %in% state_fips)
-  }
 
+  # 2) collect shapes
 
 
   if(level == 1){ #if we want state borders
+
+    df_sample <- load_zenodo('df_county.rda') %>%
+      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
+
     the_states <- unique(df_sample$STATEFP)
     index <- 1
     for(i in the_states){
@@ -50,6 +54,10 @@ sampled_region_outline <- function(area_fips, level){
 
 
   } else if (level == 2) { #if we want county borders
+
+    df_sample <- load_zenodo('df_county.rda') %>%
+      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
+
     the_counties <- unique(df_sample$COUNTYFP)
 
     index <- 1
@@ -66,29 +74,27 @@ sampled_region_outline <- function(area_fips, level){
   } else if (level == 3) { # we want tract borders
 
     # select unique tracts
-    df1 <- df_sample %>% dplyr::select(COUNTYFP, TRACTCE)
-    df2 <- df1[!duplicated(df1), ]
+
+    df_sample <- load_zenodo('df_tract.rda') %>%
+      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
+
+    geos <- df_sample$geometry
 
 
-    index <- 1
+  } else if (level == 4){
 
-    for(i in 1:nrow(df2)){
+    # select unique block groups
 
-      tc <- df2[i, 1] #temp county
-      tt <- df2[i, 2] #temp tract
+    df_sample <- load_zenodo('df_bg.rda') %>%
+      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
 
-      if(index == 1){
-        geos <- df_sample$geometry[df_sample$COUNTYFP == tc & df_sample$TRACTCE == tt] %>%
-          sf::st_union() %>%
-          sf::st_sfc() %>%
-          data.frame()
-      } else{
-        geos <- rbind(geos, sf::st_sfc(sf::st_union(df_sample$geometry[df_sample$COUNTYFP == tc & df_sample$TRACTCE == tt])))
-      }
-      index <- index + 1
-    }
+    geos <- df_sample$geometry
+
   } else{ # if we want to lump everything together
-    geos <- sf::st_union(df_sample$geometry)
+    df_sample <- load_zenodo('df_county.rda') %>%
+      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
+
+    geos <- sf::st_union(df_sample$geometry) %>% sf::st_sfc()
   }
 
 

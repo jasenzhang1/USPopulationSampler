@@ -14,5 +14,4 @@ Title
 }
 \examples{
 get_state_names()
-ok
 }

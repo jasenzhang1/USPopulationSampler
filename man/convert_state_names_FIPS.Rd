@@ -7,14 +7,17 @@
 convert_state_names_FIPS(states)
 }
 \arguments{
-\item{states}{vector of states}
+\item{states}{a vector containing state names, presumably poorly formatted in the following ways:
+- their two letter abbreviation
+- poor capitalization of the state names}
 }
 \value{
-vector of FIPS for the states
+vector of FIPS for the respective states
 }
 \description{
 Title
 }
 \examples{
-...
+convert_state_names_FIPS(c('nj', 'pa', 'NY'))
+
 }

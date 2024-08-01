@@ -7,10 +7,12 @@
 convert_state_names(states)
 }
 \arguments{
-\item{states}{string of states}
+\item{states}{a vector containing state names, presumably poorly formatted in the following ways:
+- their two letter abbreviation
+- poor capitalization of the state names}
 }
 \value{
-a string of properly formatted states
+a string of states formatted by their full names with proper capitalization
 }
 \description{
 Title

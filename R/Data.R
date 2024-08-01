@@ -1,206 +1,22 @@
-#' United States FIPS numbers for each state
+#' County-level covid cases in the month of March, 2020
 #'
 #'
-#' @format ## `statefp`
-#' A data frame with 56 rows and 2 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"statefp"
+#' @format ## `covid_march_2020`
+#' A data frame with 13556 rows and 12 columns
+#'
+#'
+#' @source <https://github.com/nytimes/covid-19-data/blob/master/us-counties-2020.csv>
+"covid_march_2020"
 
-#' Shape files for each state
-#'
-#'
-#' @format ## `df_state`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"df_state"
 
-#' Shape files for each state
-#'
-#'
-#' @format ## `df_county`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"df_county"
-
-#' Shape files for each state
-#'
-#'
-#' @format ## `df_tract`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"df_tract"
-
-#' Shape files for each state
-#'
-#'
-#' @format ## `df_bg`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"df_bg"
-
-#' Shape files for each county
-#'
-#'
-#' @format ## `county_shapes`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"county_shapes"
-
-#' Shape files for each tract
-#'
-#'
-#' @format ## `tract_shapes`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"tract_shapes"
-
-#' Shape files for each block group
-#'
-#'
-#' @format ## `bg_shapes`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"bg_shapes"
-
-#' population for each state
-#'
-#'
-#' @format ## `state_pop`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"state_pop"
-
-#' population for each state
-#'
-#'
-#' @format ## `county_pop`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"county_pop"
-
-#' population for each state
-#'
-#'
-#' @format ## `tract_pop`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"tract_pop"
 
 #' population for each block group
 #'
 #'
-#' @format ## `bg_pop`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"bg_pop"
-
-#' population for each block group
+#' @format ## `los_angeles`
+#' A data frame with 2495 rows and 10 columns:
 #'
 #'
-#' @format ## `covid`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"covid"
-
-#' population for each block group
 #'
-#'
-#' @format ## `countyfp`
-#' A data frame with 56 rows and 10 columns:
-#' \describe{
-#'   \item{country}{Country name}
-#'   \item{iso2, iso3}{2 & 3 letter ISO country codes}
-#'   \item{year}{Year}
-#'   ...
-#' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
-"countyfp"
-
-# df_state <- NULL
-# df_county <- NULL
-# df_tract <- NULL
-# df_bg <- NULL
-#
-# state_convert <- NULL
-#
-# STATE_NAME <- NULL
-# STATEFP <- NULL
-# FIPS <- NULL
+#' @source <https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_us_all_500k.zip>
+"los_angeles"

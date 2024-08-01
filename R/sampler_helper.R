@@ -1,14 +1,16 @@
-#' sampler :D
+#' Helper function to uniformly draw points in a shape proportional to their population
 #'
 #' @param N number of samples
 #' @param df a dataframe with population (pop) and shape (geometry) columns
 #'
-#' @return sampled points
+#' @return a list of sampled points
 #' @export
 #'
 #' @examples
-#' sample_by_population(N, df)
+#' sampler_helper(10, los_angeles)
 sampler_helper <- function(N, df){
+
+  # required datasets: none
 
   # V2 - USING VECTORIZATION
   #
@@ -23,13 +25,15 @@ sampler_helper <- function(N, df){
   #   - N (number): number of subcounties we want to sample
   #   - df (data.frame): dataframe of the population (pop) and shape (geometry) files
 
-  samp_vec <- sample(1:nrow(df), N, replace = T, prob = df$pop/sum(df$pop)) %>%
+  N_int <- as.integer(N)
+
+  samp_vec <- sample(1:nrow(df), N_int, replace = T, prob = df$pop/sum(df$pop)) %>%
     table() %>%
     as.data.frame() # sample N tracts
 
   points <- data.frame()
 
-  for(i in 1:nrow(samp_vec)){ # for each tract
+  for (i in 1:nrow(samp_vec)) { # for each tract
 
     index <- as.numeric(as.character(samp_vec[i,1]))
 

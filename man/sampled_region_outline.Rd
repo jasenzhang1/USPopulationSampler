@@ -9,7 +9,7 @@ sampled_region_outline(area_fips, level)
 \arguments{
 \item{area_fips}{vector of fips}
 
-\item{level}{the level of granularity}
+\item{level}{the level of granularity depicted in the plot (1 = state, 2 = county)}
 }
 \value{
 shape
@@ -18,5 +18,6 @@ shape
 Title
 }
 \examples{
-sampled_region_outline(c('06', '14'))
+sampled_region_outline(c('06', '32'), 2)
+
 }

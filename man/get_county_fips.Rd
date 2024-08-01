@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_county_fips.R
 \name{get_county_fips}
 \alias{get_county_fips}
-\title{Title}
+\title{Obtaining FIPS codes for counties}
 \usage{
 get_county_fips(states)
 }
@@ -13,8 +13,8 @@ get_county_fips(states)
 a vector of countys of the states we selected and their FIPS
 }
 \description{
-Title
+Obtaining FIPS codes for counties
 }
 \examples{
-get_county_names('CA', 'oregon', 'nj')
+get_county_fips(c('CA', 'oregon', 'nj'))
 }

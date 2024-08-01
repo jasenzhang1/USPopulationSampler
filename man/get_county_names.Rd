@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_county_names.R
 \name{get_county_names}
 \alias{get_county_names}
-\title{Title}
+\title{Obtaining a list of counties for a state or several states.}
 \usage{
 get_county_names(states)
 }
@@ -13,8 +13,8 @@ get_county_names(states)
 a vector of countys of the states we selected
 }
 \description{
-Title
+Obtaining a list of counties for a state or several states.
 }
 \examples{
-get_county_names('CA', 'oregon', 'nj')
+get_county_names(c('CA', 'oregon', 'nj'))
 }

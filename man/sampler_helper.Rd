@@ -2,7 +2,7 @@
 % Please edit documentation in R/sampler_helper.R
 \name{sampler_helper}
 \alias{sampler_helper}
-\title{sampler :D}
+\title{Helper function to uniformly draw points in a shape proportional to their population}
 \usage{
 sampler_helper(N, df)
 }
@@ -12,11 +12,11 @@ sampler_helper(N, df)
 \item{df}{a dataframe with population (pop) and shape (geometry) columns}
 }
 \value{
-sampled points
+a list of sampled points
 }
 \description{
-sampler :D
+Helper function to uniformly draw points in a shape proportional to their population
 }
 \examples{
-sample_by_population(N, df)
+sampler_helper(10, los_angeles)
 }
