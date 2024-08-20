@@ -8,7 +8,15 @@
 #' @source <https://github.com/nytimes/covid-19-data/blob/master/us-counties-2020.csv>
 "covid_march_2020"
 
-
+#' County-level covid cases in 2020
+#'
+#'
+#' @format ## `covid_2020`
+#' A data frame with 13556 rows and 12 columns
+#'
+#'
+#' @source <https://github.com/nytimes/covid-19-data/blob/master/us-counties-2020.csv>
+"covid_2020"
 
 #' population for each block group
 #'
