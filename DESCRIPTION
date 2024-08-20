@@ -15,6 +15,7 @@ Imports:
     dplyr,
     magrittr,
     sf,
+    tigris,
     utils
 Suggests: 
     testthat (>= 3.0.0)

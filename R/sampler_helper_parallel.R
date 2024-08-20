@@ -2,13 +2,14 @@
 #'
 #' @param N number of samples
 #' @param df a dataframe with population (pop) and shape (geometry) columns
+#' @param nc number of cores (default number is one)
 #'
 #' @return a list of sampled points
 #' @export
 #'
 #' @examples
-#' sampler_helper_parallel(10, los_angeles)
-sampler_helper_parallel <- function(N, df){
+#' sampler_helper_parallel(los_angeles, 10, 4)
+sampler_helper_parallel <- function(df, N, nc = 1){
 
   # required datasets: none
 
@@ -21,25 +22,29 @@ sampler_helper_parallel <- function(N, df){
   indices <- as.character(samp_vec$.) %>% as.numeric()
   shapes <- df[indices, 'geometry']
 
-  start_time <- Sys.time()
-  points <- mapply(samp, samp_vec$Freq, shapes)
-  end_time <- Sys.time()
-  print(end_time - start_time)
-
-  start_time <- Sys.time()
 
   # how many cores
   if(Sys.info()["sysname"] == 'Windows'){
     points <- parallel::mcmapply(samp, samp_vec$Freq, shapes, mc.cores = 1L)
   } else{
-    points <- parallel::mcmapply(samp, samp_vec$Freq, shapes, mc.cores = 2L)
+    points <- parallel::mcmapply(samp, samp_vec$Freq, shapes, mc.cores = as.integer(nc))
   }
 
-  end_time <- Sys.time()
-  print(end_time - start_time)
 
-  points2 <- sf::st_sfc(unlist(points, recursive = FALSE)) %>%
-    sf::st_sf()
+  if(length(points) == N){
+    points2 <- sf::st_sfc(points) %>%
+      sf::st_sf()
+  } else{
+    points2 <- sf::st_sfc(unlist(points, recursive = FALSE)) %>%
+      sf::st_sf()
+  }
+
+
+
 
   return(points2)
 }
+
+
+
+

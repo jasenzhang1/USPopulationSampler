@@ -4,12 +4,12 @@
 \alias{sampler_helper}
 \title{Helper function to uniformly draw points in a shape proportional to their population}
 \usage{
-sampler_helper(N, df)
+sampler_helper(df, N)
 }
 \arguments{
-\item{N}{number of samples}
-
 \item{df}{a dataframe with population (pop) and shape (geometry) columns}
+
+\item{N}{number of samples}
 }
 \value{
 a list of sampled points
@@ -18,5 +18,5 @@ a list of sampled points
 Helper function to uniformly draw points in a shape proportional to their population
 }
 \examples{
-sampler_helper(10, los_angeles)
+sampler_helper(los_angeles, 10)
 }

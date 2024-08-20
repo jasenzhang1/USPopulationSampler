@@ -1,17 +1,17 @@
 #' Title
 #'
 #' @param area_fips vector of fips
-#' @param level the level of granularity depicted in the plot (1 = state, 2 = county)
+#' @param level the level of granularity depicted in the plot (0 = country, 1 = state, 2 = county)
 #'
 #' @return shape
 #' @export
 #'
 #' @examples
-#' sampled_region_outline(c('06', '32'), 2)
+#' sampled_region_outline_v2(c('06', '32'), 2)
 #'
-sampled_region_outline <- function(area_fips, level){
+sampled_region_outline_v2 <- function(area_fips, level){
+  print('hi')
 
-  # required datasets: df_state, df_county, df_tracts, df_bg
 
   state_fips <- c()
   county_fips <- c()
@@ -55,8 +55,8 @@ sampled_region_outline <- function(area_fips, level){
 
   } else if (level == 2) { #if we want county borders
 
-    df_sample <- load_zenodo('df_county.rda') %>%
-      dplyr::filter(get('FIPS') %in% county_fips | get('STATEFP') %in% state_fips)
+    df_sample <- counties(year = 2020) %>%
+      dplyr::filter(GEOID %in% county_fips | STATEFP %in% state_fips)
 
     the_counties <- unique(df_sample$COUNTYFP)
 
@@ -70,6 +70,7 @@ sampled_region_outline <- function(area_fips, level){
         geos <- rbind(geos, sf::st_sfc(sf::st_union(df_sample$geometry[df_sample$COUNTYFP == i])))
       }
       index <- index + 1
+      print(index)
     }
   } else if (level == 3) { # we want tract borders
 

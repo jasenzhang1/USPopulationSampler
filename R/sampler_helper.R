@@ -7,27 +7,19 @@
 #' @export
 #'
 #' @examples
-#' sampler_helper(10, los_angeles)
-sampler_helper <- function(N, df){
+#' sampler_helper(los_angeles, 10)
+sampler_helper <- function(df, N){
 
   # required datasets: none
 
-  # V2 - USING VECTORIZATION
-  #
-  # we give the function:
-  #   - the dataframe of populations and shapes
-  #
-  # we get:
-  #   - a dataframe of sampled points by population
-  #   - a graph visualization of the sampling
-  #
-  # input:
-  #   - N (number): number of subcounties we want to sample
-  #   - df (data.frame): dataframe of the population (pop) and shape (geometry) files
-
   N_int <- as.integer(N)
 
-  samp_vec <- sample(1:nrow(df), N_int, replace = T, prob = df$pop/sum(df$pop)) %>%
+  # sample indices from 1:nrow(df)
+
+  samp_vec <- sample(1:nrow(df),
+                     N_int,
+                     replace = T,
+                     prob = df$pop/sum(df$pop)) %>%
     table() %>%
     as.data.frame() # sample N tracts
 

@@ -4,12 +4,14 @@
 \alias{sampler_helper_parallel}
 \title{Helper function to uniformly draw points in a shape proportional to their population}
 \usage{
-sampler_helper_parallel(N, df)
+sampler_helper_parallel(df, N, nc)
 }
 \arguments{
+\item{df}{a dataframe with population (pop) and shape (geometry) columns}
+
 \item{N}{number of samples}
 
-\item{df}{a dataframe with population (pop) and shape (geometry) columns}
+\item{nc}{number of cores}
 }
 \value{
 a list of sampled points
@@ -18,5 +20,5 @@ a list of sampled points
 Helper function to uniformly draw points in a shape proportional to their population
 }
 \examples{
-sampler_helper_parallel(10, los_angeles)
+sampler_helper_parallel(los_angeles, 10)
 }

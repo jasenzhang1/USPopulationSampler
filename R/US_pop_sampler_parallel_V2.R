@@ -3,20 +3,16 @@
 #' @param N number of points to draw
 #' @param area_fips vector of FIPS (2 characters for states, 5 characters for counties)
 #' @param level integer specifying granularity of population measurements. (1 = state, 2 = county, 3 = tract, 4 = BG)
+#' @param nc number of cores
 #'
 #' @return sampled points
 #' @export
 #'
 #' @examples
-#' US_pop_sampler_parallel(50, '06', 2)
-US_pop_sampler_parallel <- function(N, area_fips, level){
+#' US_pop_sampler_parallel_V2(50, '06', 2)
+US_pop_sampler_parallel_V2 <- function(N, area_fips, level, nc = 1){
 
-  # required datasets: df_state, df_county, df_tract, df_bg
-
-  # if (!requireNamespace("sf", quietly = TRUE)) {
-  #   stop("Package 'sf' needed for this function to work. Please install it.",
-  #        call. = FALSE)
-  # }
+  # V2: we are not using load_zenodo. We are loading shape files with the tigris dataset
 
   # 1) PREPARE THE RELEVANT DATASET
 
@@ -80,7 +76,7 @@ US_pop_sampler_parallel <- function(N, area_fips, level){
 
   # 2) SAMPLE
 
-  sampled_points_sf <- sampler_helper(N, df_sample)
+  sampled_points_sf <- sampler_helper_parallel(N, df_sample, nc)
 
   return(sampled_points_sf)
 }

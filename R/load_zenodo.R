@@ -6,7 +6,7 @@
 #' @return the dataset
 #' @export
 #'
-#' @examples load_zenodo('df_state.rda', 12981327)
+#' @examples load_zenodo('df_state.rda')
 load_zenodo <- function(data, ID_number = 12981327){
 
   url <- paste('https://zenodo.org/records', ID_number, sep = '/')
